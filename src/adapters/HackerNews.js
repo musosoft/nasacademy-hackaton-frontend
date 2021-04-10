@@ -31,6 +31,12 @@ const HackerNews = () => {
       });
   }, []);
 
+  const getSanitizedHostname = (url) => {
+    const parser = document.createElement("a");
+    parser.href = url;
+    return parser.hostname;
+  };
+
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -40,12 +46,16 @@ const HackerNews = () => {
       <ol className="list-decimal list-inside p-2">
         <div className="flex items-center flex-wrap">
           {items.map((item) => (
-            <li key={item.id} className="py-2 text-gray-400">
+            <li key={item.id} className="py-2 w-full text-gray-400">
               <button className="mr-1 focus:outline-none">▲</button>
               <a href={item.url} className="mr-1 text-gray-800">
                 {item.title}
               </a>
-              (<a href={item.url}>{item.url}</a>)
+              (
+              <a href={`//${getSanitizedHostname(item.url)}`}>
+                {getSanitizedHostname(item.url)}
+              </a>
+              )
             </li>
           ))}
         </div>

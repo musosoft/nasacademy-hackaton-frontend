@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import logo from "./logo.gif";
 
 const App = () => (
@@ -27,6 +28,9 @@ const App = () => (
       <div className="bg-gray-100 h-full">
         <Route path="/">
           <Home />
+        </Route>
+        <Route path="login">
+          <Login />
         </Route>
       </div>
     </div>
